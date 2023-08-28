@@ -8,7 +8,7 @@ const app = express()
 
 app.use(express.static(path.join(__dirname, 'public'))) // Cấu hình file tĩnh
 
-app.use(morgan('combined')) 
+// app.use(morgan('combined')) 
 
 app.engine('hbs', handlebars.engine({
   extname: ".hbs"
@@ -22,16 +22,15 @@ app.get('/', (req, res) => {
   res.render('home');
 
 });
-app.get('/tin-tuc', (req, res) => {
+app.get('/news', (req, res) => {
+  console.log(req.query)
   res.render('news');
 });
+app.get('/search', (req, res) => {
+  res.render('search');
+});
 
-app.get('/trangchu', (req, res) => {
-  res.send('<h1>Hello World</h1>')
-})
-app.post('/hello', (req,res)=>{
-    res.send("POST")
-})
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })

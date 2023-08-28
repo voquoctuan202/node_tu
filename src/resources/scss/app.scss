@@ -2,6 +2,11 @@
 h1 {
     color: $custom-color;
 }
+
+.search-form{
+    margin: 2% 10% 2% 10%;
+}
+
  // Sử dụng biến đã đặt trong file _variables 
  // Chạy lệnh npm run watch để combine từ file resources/scss/app.scss sang src/public/css/app.css 
  // Khi chạy lệnh trên sẽ tự động lắng nghe các thay đổi mà không cần chạy lại lệnh trên
