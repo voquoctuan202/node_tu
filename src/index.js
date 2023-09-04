@@ -4,11 +4,15 @@ const handlebars = require('express-handlebars')
 const morgan = require('morgan')
 const path = require('path')
 const port = 3000
+const route = require("./routes")
 const app = express()
 
 app.use(express.static(path.join(__dirname, 'public'))) // Cấu hình file tĩnh
-
 // app.use(morgan('combined')) 
+app.use(express.urlencoded({
+  extended: true
+})) //Xử lí dữ liệu  từ server -> client
+app.use(express.json())  //Xử lí dữ liệu từ client ->  server 
 
 app.engine('hbs', handlebars.engine({
   extname: ".hbs"
@@ -16,19 +20,9 @@ app.engine('hbs', handlebars.engine({
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources\\views'))
 
-console.log('PATH: ',path.join(__dirname, 'resources\\views'))
+// console.log('PATH: ',path.join(__dirname, 'resources\\views'))
 
-app.get('/', (req, res) => {
-  res.render('home');
-
-});
-app.get('/news', (req, res) => {
-  console.log(req.query)
-  res.render('news');
-});
-app.get('/search', (req, res) => {
-  res.render('search');
-});
+route(app);
 
 
 app.listen(port, () => {
